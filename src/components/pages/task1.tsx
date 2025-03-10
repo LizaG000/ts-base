@@ -1,0 +1,80 @@
+import { useState } from "react";
+function Task1(){
+    const [array_request, setArrayRequest] = useState("12, 45, 56")    
+    const [number_request, setNumberRequest] = useState("12")    
+    const [array_response, setArrayResponse] = useState("")
+    
+    const func = (array: number[], num: number) =>{
+        const array_response : number[] = []
+        for (let i = 0; i <= array.length; i++){
+            if (array[i] % num == 0 && array[i] != 0){
+                array_response.push(array[i])
+            }
+        }
+        // TODO надо изменить, чтобы возвращалась, строка через ", "
+        return String(array_response)
+    }
+
+    const click = () => {
+        const array_number: number[] = []
+        let array_string: string[]
+        let number_: number
+
+        const pattern1 = /^(\d+\s)+\d+$|^(\d+\s)+\d+$|^\d+\s/;
+        const pattern2 = /^(\d+,\s)+\d+$/;
+        if (pattern1.test(array_request)) {
+            array_string = array_request.split(" ");
+        } else if (pattern2.test(array_request)) {
+            array_string = array_request.split(", ");
+        } else{
+            setNumberRequest("Ожидается массив");
+            setArrayResponse("")
+            return;
+        }
+        console.log(array_string)
+        for(let i = 0; i < array_string.length; i ++){
+            array_number.push(Number(array_string[i]))
+            console.log(array_string[i])
+            console.log(array_number)
+        }
+        
+        const pattern3 = /^(\d+)$/;
+        if (pattern3.test(number_request)) {
+            number_ = Number(number_request);
+        } else{
+            setNumberRequest("Ожидается число");
+            setArrayResponse("")
+            return;
+        }
+        setArrayResponse(func(array_number, number_))
+    }
+    
+    return(
+        <>
+            <input
+              type="text"
+              name="request"
+              value={array_request}
+              onChange={(e) => setArrayRequest(e.target.value)}
+              required
+            ></input>
+            <input
+              type="text"
+              name="request"
+              value={number_request}
+              onChange={(e) => setNumberRequest(e.target.value)}
+              required
+            ></input>
+            <button className="" onClick={click}>Ответ</button>
+            
+            <input
+              type="text"
+              name="request"
+              value={array_response}
+              readOnly
+            ></input>
+        </>
+    )
+}
+
+export default Task1
