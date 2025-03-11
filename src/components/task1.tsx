@@ -5,14 +5,18 @@ function Task1(){
     const [array_response, setArrayResponse] = useState("")
     
     const func = (array: number[], num: number) =>{
-        const array_response : number[] = []
+       let response = ""
         for (let i = 0; i <= array.length; i++){
             if (array[i] % num == 0 && array[i] != 0){
-                array_response.push(array[i])
+                if (response == ""){
+                    response = String(array[i])
+                }
+                else{
+                    response += ", " + String(array[i])
+                }
             }
         }
-        // TODO надо изменить, чтобы возвращалась, строка через ", "
-        return String(array_response)
+        return response
     }
 
     const click = () => {
@@ -27,8 +31,7 @@ function Task1(){
         } else if (pattern2.test(array_request)) {
             array_string = array_request.split(", ");
         } else{
-            setNumberRequest("Ожидается массив");
-            setArrayResponse("")
+            setArrayResponse("Ожидается массив");
             return;
         }
         console.log(array_string)
@@ -42,8 +45,7 @@ function Task1(){
         if (pattern3.test(number_request)) {
             number_ = Number(number_request);
         } else{
-            setNumberRequest("Ожидается число");
-            setArrayResponse("")
+            setArrayResponse("Ожидается число");
             return;
         }
         setArrayResponse(func(array_number, number_))

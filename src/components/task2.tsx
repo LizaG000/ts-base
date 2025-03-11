@@ -1,27 +1,30 @@
 import { useState } from "react";
 function Task2(){
-    const [array_request, setArrayRequest] = useState("12, 45, 56")    
+    const [array_request, setArrayRequest] = useState("Hello, world")    
     const [string_request, setStringRequest] = useState("")    
     const [array_response, setArrayResponse] = useState("")
     
-    const func = (array: string[], num: string) =>{
-        console.log(num)
-        // TODO надо изменить, чтобы возвращалась, строка через ", "
-        return String(array)
+    const func = (array: string[], separator: string) =>{
+        let response = ""
+        for(let i=0; i <array.length; i++){
+            if (response == ""){
+                response = String(array[i])
+            }
+            else{
+                response += separator + String(array[i])
+            }
+        }
+        return response
     }
 
     const click = () => {
         let array_string: string[]
 
-        const pattern1 = /^(\d+\s)+\d+$|^(\d+\s)+\d+$|^\d+\s/;
-        const pattern2 = /^(\d+,\s)+\d+$/;
+        const pattern1 = /^(.+,\s)+.+$|^.+/;
         if (pattern1.test(array_request)) {
-            array_string = array_request.split(" ");
-        } else if (pattern2.test(array_request)) {
             array_string = array_request.split(", ");
         } else{
-            setArrayRequest("Ожидается массив");
-            setArrayResponse("")
+            setArrayResponse("Ожидается массив");
             return;
         }
         
