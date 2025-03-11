@@ -38,21 +38,31 @@ function Task3(){
     
     return(
         <>
-            <input
+        <h1 className="center-h">Задание 3</h1>
+        <div className="center-h">
+            <div className="margin-r-55">
+        <p>Введите ограничения по возрасту: </p>
+        <div className="center-h margin-t-25">
+            <input 
               type="text"
               name="request"
               value={params}
               onChange={(e) => setParams(e.target.value)}
               required
             ></input>
-            <button className="" onClick={click}>Ответ</button>
+            </div>
+            </div>
+            <div className="center-v margin-t-25">
+            <button onClick={click}>Ответ</button>
+            </div>
+            </div>
             <table>
                 <thead>
                 <tr>
-                    <th>Фамилия</th>
-                    <th>Имя</th>
-                    <th>Отчество</th>
-                    <th>Возраст</th>
+                    <th className="c-1">Фамилия</th>
+                    <th className="c-1">Имя</th>
+                    <th className="c-1">Отчество</th>
+                    <th className="c-1">Возраст</th>
                 </tr>
                 </thead>
                 <tbody>

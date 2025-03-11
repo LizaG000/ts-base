@@ -1,17 +1,17 @@
 import { useState } from "react";
-function Task1(){
-    const [array_request, setArrayRequest] = useState("12, 45, 56")    
-    const [number_request, setNumberRequest] = useState("12")    
+function Task1() {
+    const [array_request, setArrayRequest] = useState("12, 45, 56")
+    const [number_request, setNumberRequest] = useState("12")
     const [array_response, setArrayResponse] = useState("")
-    
-    const func = (array: number[], num: number) =>{
-       let response = ""
-        for (let i = 0; i <= array.length; i++){
-            if (array[i] % num == 0 && array[i] != 0){
-                if (response == ""){
+
+    const func = (array: number[], num: number) => {
+        let response = ""
+        for (let i = 0; i <= array.length; i++) {
+            if (array[i] % num == 0 && array[i] != 0) {
+                if (response == "") {
                     response = String(array[i])
                 }
-                else{
+                else {
                     response += ", " + String(array[i])
                 }
             }
@@ -30,51 +30,72 @@ function Task1(){
             array_string = array_request.split(" ");
         } else if (pattern2.test(array_request)) {
             array_string = array_request.split(", ");
-        } else{
+        } else {
             setArrayResponse("Ожидается массив");
             return;
         }
         console.log(array_string)
-        for(let i = 0; i < array_string.length; i ++){
+        for (let i = 0; i < array_string.length; i++) {
             array_number.push(Number(array_string[i]))
             console.log(array_string[i])
             console.log(array_number)
         }
-        
+
         const pattern3 = /^(\d+)$/;
         if (pattern3.test(number_request)) {
             number_ = Number(number_request);
-        } else{
+        } else {
             setArrayResponse("Ожидается число");
             return;
         }
         setArrayResponse(func(array_number, number_))
     }
-    
-    return(
+
+    return (
         <>
-            <input
-              type="text"
-              name="request"
-              value={array_request}
-              onChange={(e) => setArrayRequest(e.target.value)}
-              required
-            ></input>
-            <input
-              type="text"
-              name="request"
-              value={number_request}
-              onChange={(e) => setNumberRequest(e.target.value)}
-              required
-            ></input>
-            <button className="" onClick={click}>Ответ</button>
-            
-            <input
-              type="text"
-              name="request"
-              value={array_response}
-              readOnly
-            ></input>
+            <h1 className="center-h">Задание 1</h1>
+            <div className="center-h margin-t-55">
+                <div className="margin-r-55">
+                    <p className="center-h">Введите массив</p>
+                    <div className="center-h margin-t-25">
+                        <input
+                            type="text"
+                            name="request"
+                            value={array_request}
+                            onChange={(e) => setArrayRequest(e.target.value)}
+                            required
+                        ></input>
+                    </div>
+                </div>
+                <div>
+                    <p className="center-h">Введите делитель</p>
+                    <div className="center-h margin-t-25">
+                        <input
+                            type="text"
+                            name="request"
+                            value={number_request}
+                            onChange={(e) => setNumberRequest(e.target.value)}
+                            required
+                        ></input>
+                    </div>
+                </div>
+            </div>
+            <div className="center-h margin-t-55">
+                <button className="" onClick={click}>Ответ</button>
+            </div>
+            <div className="center-h margin-t-55">
+                <div>
+                    <p className="center-h">Ответ</p>
+                    <div className="center-h margin-t-25">
+                        <input
+                            type="text"
+                            name="request"
+                            value={array_response}
+                            readOnly
+                        ></input>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }
